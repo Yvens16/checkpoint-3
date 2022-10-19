@@ -1,10 +1,11 @@
-const { check3 } = require('../bd');
-const createTrack = (req, res) => {
+const { check3 } = require('../../bd');
+
+module.exports = (req, res) => {
   const { title, youtube_url, id_album } = req.body;
 
   check3
     .query(
-      'INSERT INTO track( title, youtube_url, id_album) VALUES ( ?, ?, ?)',
+      `INSERT INTO track( title, youtube_url, id_album) VALUES ( ?, ?, ?)`,
       [title, youtube_url, id_album]
     )
     .then(([result]) => {
@@ -13,8 +14,4 @@ const createTrack = (req, res) => {
     .catch((err) => {
       res.status(500).send(`Error in createtrack ${err}`);
     });
-};
-
-module.exports = {
-  createTrack,
 };

@@ -1,10 +1,11 @@
-const { check3 } = require('../bd');
-const createAlbum = (req, res) => {
+const { check3 } = require('../../bd');
+
+module.exports = (req, res) => {
   const { title, genre, picture, artist } = req.body;
 
   check3
     .query(
-      'INSERT INTO album( title, genre, picture, artist ) VALUES ( ?, ?, ?, ?)',
+      `INSERT INTO album( title, genre, picture, artist ) VALUES ( ?, ?, ?, ?)`,
       [title, genre, picture, artist]
     )
     .then(([result]) => {
@@ -13,8 +14,4 @@ const createAlbum = (req, res) => {
     .catch((err) => {
       res.status(500).send(`Error in createAlbum ${err}`);
     });
-};
-
-module.exports = {
-  createAlbum,
 };

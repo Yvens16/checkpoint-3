@@ -1,8 +1,9 @@
-const { check3 } = require('../bd');
-const getTrackById = (req, res) => {
-  const id = parseInt(req.params.id);
+const { check3 } = require('../../bd');
+
+module.exports = (req, res) => {
+  const { id } = parseInt(req.params.id);
   check3
-    .query('SELECT * FROM track WHERE id = ?, [id]')
+    .query(`SELECT * FROM track WHERE id = ?`, [id])
     .then(([trackById]) => {
       res.json(trackById);
     })
@@ -10,8 +11,4 @@ const getTrackById = (req, res) => {
       console.error(err);
       res.status(500).send('Error retrieving from database');
     });
-};
-
-module.exports = {
-  getTrackById,
 };

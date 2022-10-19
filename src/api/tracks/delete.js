@@ -1,8 +1,9 @@
-const { check3 } = require('../bd');
-const deleteTrack = (req, res) => {
+const { check3 } = require('../../bd');
+
+module.exports = (req, res) => {
   const id = parseInt(req.params.id);
   check3
-    .query('delete from track where id=?', [id])
+    .query(`delete from track where id=?`, [id])
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.status(404).json({ message: `track was not found in db` });
@@ -15,8 +16,4 @@ const deleteTrack = (req, res) => {
     .catch((err) => {
       res.status(500).send(`Error in postTrack ${err}`);
     });
-};
-
-module.exports = {
-  deleteTrack,
 };

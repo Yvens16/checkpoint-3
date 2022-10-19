@@ -1,8 +1,9 @@
-const { check3 } = require('../bd');
-const deleteAlbum = (req, res) => {
+const { check3 } = require('../../bd');
+
+module.exports = (req, res) => {
   const id = parseInt(req.params.id);
   check3
-    .query('delete from album where id=?', [id])
+    .query(`delete from album where id=?`, [id])
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.status(404).json({ message: `album was not found in db` });
@@ -17,7 +18,4 @@ const deleteAlbum = (req, res) => {
         message: `album number: ${id} was not deleted because of error, ${err}`,
       });
     });
-};
-module.exports = {
-  deleteAlbum,
 };
