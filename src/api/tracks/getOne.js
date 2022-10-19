@@ -11,6 +11,6 @@ module.exports = (req, res) => {
     .then(([track]) => res.status(200).json(track[0]))
     .catch((err) => {
       console.error(err);
-      res.status(500).send('Error getOne track query');
+      res.status(500).send('Error in getOne query');
     });
 };
