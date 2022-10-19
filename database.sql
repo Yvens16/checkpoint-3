@@ -18,3 +18,5 @@ CREATE TABLE track (
   PRIMARY KEY (id),
   FOREIGN KEY (id_album) REFERENCES album(id)
 );
+
+insert into album (title, genre, picture, artist) values ('title', 'genre', 'picture', 'artist')
