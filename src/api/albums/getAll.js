@@ -1,3 +1,12 @@
+const { mydb } = require('../../Cp3');
+
 module.exports = (req, res) => {
-  // your code here !
+  mydb
+    .query('SELECT * FROM album')
+    .then(([result]) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
 };
