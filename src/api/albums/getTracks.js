@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+const { check3 } = require('../bd');
 const getTracksFromAlbum = (req, res) => {
   const id_album = parseInt(req.params.id_album);
   check3
