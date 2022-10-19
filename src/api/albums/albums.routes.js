@@ -9,11 +9,11 @@ const delete_ = require('./delete');
 
 const router = Router();
 
-router.get('/', getAll);
-router.get('/:id', getOne);
-router.get('/:id/tracks', getTracks);
-router.post('/', post);
-router.put('/:id', update);
-router.delete('/:id', delete_); // addinng _ here because 'delete' is a reserved name
+router.get('/album', getAll.getAlbum);
+router.get('/album/:id', getOne.getAlbumById);
+router.get('/trackAlbum/:id_album', getTracks.getTracksFromAlbum);
+router.post('/album', post.createAlbum);
+router.put('/album/:id', update);
+router.delete('/album/:id', delete_.deleteAlbum); // addinng _ here because 'delete' is a reserved name
 
 module.exports = router;
