@@ -8,7 +8,12 @@ module.exports = (req, res) => {
   `,
       [id]
     )
-    .then(([album]) => res.status(200).json(album[0]))
+    .then(([album]) => {
+      if (!album[0]) {
+        return res.sendStatus(404);
+      }
+      res.status(200).json(album[0]);
+    })
     .catch((err) => {
       console.error(err);
       res.status(500).send('Error rin getOne album query');

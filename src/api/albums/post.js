@@ -9,7 +9,26 @@ module.exports = (req, res) => {
   `,
       [title, genre, picture, artist]
     )
-    .then(() => res.sendStatus(201))
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        return false;
+      }
+      return result.insertId;
+    })
+    .then((insertId) => {
+      database
+        .query(
+          `
+        select * from album where id = ?
+      `,
+          [insertId]
+        )
+        .then(([album]) => res.status(201).json(album[0]))
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send('Error in getAlbum after post album query');
+        });
+    })
     .catch((err) => {
       console.error(err);
       res.status(500).send('Error in post album query');
