@@ -10,7 +10,7 @@ module.exports =(req, res) => {
   .query(`INSERT INTO track (title, youtube_url, album_id) VALUES (?, ?, ?)`,
   [title, youtube_url, album_id])
   .then(([result]) =>{
-      res.location(`/track/${result.insertId}`).sendStatus(200);
+      res.location(`/track/${result.insertId}`).sendStatus(201);
   })
   .catch(() => {
             res.status(500).send("error")
