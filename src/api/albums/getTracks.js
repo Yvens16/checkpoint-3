@@ -1,14 +1,20 @@
 const { check3 } = require('../../bd');
 
 module.exports = (req, res) => {
-  const id_album = parseInt(req.params.id_album);
+  const { id } = req.params;
+
   check3
-    .query(`SELECT * FROM track WHERE id_album = ?`, [id_album])
-    .then(([trackById]) => {
-      res.json(trackById);
-    })
+    .query(
+      `
+    select track.* from track 
+    inner join album on track.id_album = album.id
+    where album.id = ?
+  `,
+      [id]
+    )
+    .then(([tracks]) => res.status(200).json(tracks))
     .catch((err) => {
       console.error(err);
-      res.status(500).send('Error retrieving from database');
+      res.status(500).send('Error getTracks album query');
     });
 };

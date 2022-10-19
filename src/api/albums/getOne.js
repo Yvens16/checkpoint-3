@@ -5,7 +5,7 @@ module.exports = (req, res) => {
   check3
     .query(`SELECT * FROM album WHERE id = ?`, [id])
     .then(([album]) => {
-      res.json(album);
+      res.json(album[0]);
     })
     .catch((err) => {
       console.error(err);
