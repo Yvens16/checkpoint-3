@@ -1,17 +1,17 @@
-const { Router } = require('express');
+const express = require('express');
 
-const getAll = require('./getAll');
+const router = express.Router();
+
+const getAllTrack = require('./getAll');
 const getOne = require('./getOne');
-const post = require('./post');
-const update = require('./update');
-const delete_ = require('./delete');
+const postTrack = require('./post');
+const updateTrack = require('./update');
+const deleteTrack = require('./delete');
 
-const router = Router();
-
-router.get('/', getAll);
-router.get('/:id', getOne);
-router.post('/', post);
-router.put('/:id', update);
-router.delete('/:id', delete_); // addinng _ here because 'delete' is a reserved name
+router.get('/', getAllTrack.getAllTrack);
+router.get('/:id', getOne.getOneTrack);
+router.post('/', postTrack.postTrack);
+router.put('/:id', updateTrack.updateTrack);
+router.delete('/:id', deleteTrack.deleteTrack); // addinng _ here because 'delete' is a reserved name
 
 module.exports = router;

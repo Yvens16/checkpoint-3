@@ -1,19 +1,19 @@
-const { Router } = require('express');
+const express = require('express');
+
+const router = express.Router();
 
 const getAll = require('./getAll');
 const getOne = require('./getOne');
-const getTracks = require('./getTracks');
+const getTracksFromAlbum = require('./getTracks');
 const post = require('./post');
-const update = require('./update');
-const delete_ = require('./delete');
+const updateAlbum = require('./update');
+const deleteAlbum = require('./delete');
 
-const router = Router();
-
-router.get('/', getAll);
-router.get('/:id', getOne);
-router.get('/:id/tracks', getTracks);
-router.post('/', post);
-router.put('/:id', update);
-router.delete('/:id', delete_); // addinng _ here because 'delete' is a reserved name
+router.get('/', getAll.getAlbums);
+router.get('/:id', getOne.getOneAlbum);
+router.get('/:id/tracks', getTracksFromAlbum.getTracksFromAlbum);
+router.post('/', post.postAlbum);
+router.put('/:id', updateAlbum.updateAlbum);
+router.delete('album/:id', deleteAlbum.deleteAlbum); // addinng _ here because 'delete' is a reserved name
 
 module.exports = router;
