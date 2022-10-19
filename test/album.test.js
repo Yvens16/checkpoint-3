@@ -73,11 +73,11 @@ describe('🎧 ALBUMS ROUTES', () => {
     const res = await supertest(app).get(
       `/api/albums/${persistentDatas.createdAlbum.id}`
     );
-
     expect(res.body).toHaveProperty('title', 'The Light Side of the Sun');
   });
 
   it(`should delete the created album 🧪 /api/albums/`, async () => {
+    console.log(persistentDatas, 'delete album');
     await supertest(app)
       .delete(`/api/albums/${persistentDatas.createdAlbum.id}`)
       .expect(204);
