@@ -7,7 +7,9 @@ module.exports = (_, res) => {
   select * from album
   `
     )
-    .then(([albums]) => res.status(200).json(albums))
+    .then(([albums]) => {
+      res.status(200).json(albums);
+    })
     .catch((err) => {
       console.error(err);
       res.status(500).send('Error in getAll album query');

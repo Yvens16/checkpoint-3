@@ -5,7 +5,7 @@ module.exports = (req, res) => {
   database
     .query(
       `
-    select * from track 
+    select track.* from track 
     inner join album on track.id_album = album.id
     where album.id = ?
   `,

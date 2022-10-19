@@ -9,7 +9,7 @@ module.exports = (req, res) => {
   `,
       [title, genre, picture, artist]
     )
-    .then(() => res.sendStatus(204))
+    .then(() => res.sendStatus(201))
     .catch((err) => {
       console.error(err);
       res.status(500).send('Error in post album query');
