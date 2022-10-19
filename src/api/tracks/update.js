@@ -6,7 +6,7 @@ module.exports = (req, res) => {
 
   mydb
     .query(
-      `UPDATE track set title = ?, youtube_url = ?, album_id=? WHERE id = ?`,
+      `UPDATE track set title = ?, youtube_url = ?, id_album=? WHERE id = ?`,
       [title, youtubeUrl, idAlbum]
     )
     .then(([result]) => {

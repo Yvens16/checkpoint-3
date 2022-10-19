@@ -1,6 +1,6 @@
 const { mydb } = require('../../Cp3');
 module.exports = (req, res) => {
-  const album_id = req.params.album_id;
+  const album_id = req.params.id_album;
   mydb
     .query(
       `SELECT * FROM track INNER JOIN album ON album.id= track.album_id WHERE album_id = ?`,

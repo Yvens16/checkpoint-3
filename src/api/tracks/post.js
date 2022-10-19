@@ -5,11 +5,11 @@ module.exports = (req, res) => {
 
   mydb
     .query(
-      `INSERT INTO track (title, youtube_url, album_id) VALUES (?, ?, ?)`,
+      `INSERT INTO track (title, youtube_url, id_album) VALUES (?, ?, ?)`,
       [title, youtubeUrl, idAlbum]
     )
     .then(([result]) => {
-      res.location(`/track/${result.insertId}`).sendStatus(200);
+      res.location(`/track/${result.insertId}`).sendStatus(201);
     })
     .catch((error) => {
       console.error(error);
