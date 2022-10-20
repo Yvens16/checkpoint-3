@@ -1,14 +1,14 @@
 const { sqlDb } = require('../../db');
 
 const deleteTrack = (req, res) => {
-  const id = parseInt(req.params.id);
-  sqlDb.query('delete from track where id = ?', [id]).then(([result]) => {
-    if (result.affectedRows === 0) {
-      res.status(404).json({ message: `track was not found in db` });
-    } else {
-      res.status(204).json({ message: `track number: ${id} has been deleted` });
-    }
-  });
+  const { id } = req.params;
+  sqlDb
+    .query('delete from track where id = ?', [id])
+    .then(() => res.sendStatus(204))
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error in delete track query');
+    });
 };
 
 module.exports = {

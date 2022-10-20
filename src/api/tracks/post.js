@@ -9,7 +9,14 @@ const postCreateTrack = (req, res) => {
       [title, youtube_url, id_album]
     )
     .then(([result]) => {
-      res.location(`/track/${result.insertId}`).sendStatus(201);
+      return result.insertId;
+    })
+    .then((insertId) => {
+      sqlDb
+        .query(`select * from track where id = ?`, [insertId])
+        .then(([track]) => {
+          res.status(201).json(track[0]);
+        });
     });
 };
 
