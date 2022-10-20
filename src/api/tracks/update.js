@@ -1,23 +1,23 @@
 const { mydb } = require('../../Cp3');
 
 module.exports = (req, res) => {
-  const idAlbum = parseInt(req.params.id);
-  const { title, youtubeUrl } = req.body;
+  const { id } = req.params;
+  const { title, youtubeUrl, id_album } = req.body;
 
   mydb
     .query(
       `UPDATE track set title = ?, youtube_url = ?, id_album=? WHERE id = ?`,
-      [title, youtubeUrl, idAlbum]
+      [title, youtubeUrl, id_album, id]
     )
     .then(([result]) => {
       if (result.affectedRows === 0) {
-        res.status(404).send('not found');
+        res.sendStatus(404);
       } else {
         res.sendStatus(204);
       }
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send('Error editing the album in database');
+      res.status(500).send('Error editing the album');
     });
 };

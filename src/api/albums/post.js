@@ -10,8 +10,7 @@ module.exports = (req, res) => {
       [title, genre, picture, artist]
     )
     .then(([result]) => {
-      res.location(`/album/${result.insertId}`).sendStatus(201);
-    })
+      res.status(201).json({ title: title, genre: genre, picture: picture, artist: artist, id: result.insertId});    })
     .catch((error) => {
       console.error(error);
       res.status(500).send('error');
