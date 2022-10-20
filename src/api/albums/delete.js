@@ -10,7 +10,7 @@ module.exports =(req, res) => {
         if (result.affectedRows === 0) {
           res.status(404).json("Not found in db");
         } else {
-          res.status(201).json(`album number: ${id} has been deleted`);
+          res.status(204).json(`album number: ${id} has been deleted`);
         }
       })
       .catch((err) => {

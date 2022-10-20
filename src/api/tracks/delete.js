@@ -3,17 +3,10 @@ const { mydb } = require("../../../db");
 
  module.exports =(req, res) => {
   // your code here !
-  const id = parseInt(req.params.id, 10);
-    mydb
-    .query("DELETE from track where id=?", [id])
-    .then(([result]) => {
-        if (result.affectedRows === 0) {
-          res.status(404).json("Not found in db");
-        } else {
-          res.status(201).json(`track number: ${id} has been deleted`);
-        }
-      })
-      .catch((err) => {
-        res.status(500).json("error in delete action", err);
-      });
+  const { id } = req.params;
+
+  mydb
+    .query(`DELETE FROM track WHERE id = ?`,[id])
+    .then(() => res.sendStatus(204))
+    .catch((err) => res.status(500).json(err));
 };

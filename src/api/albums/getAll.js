@@ -6,7 +6,7 @@ module.exports =(_, res) => {
   mydb
   .query('SELECT * FROM album')
     .then(([result])=>{
-        res.json({result})
+        res.json(result)
 })
 .catch((err) => {
     res.status(500).send(err)

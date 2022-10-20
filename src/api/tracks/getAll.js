@@ -5,8 +5,8 @@ const { mydb } = require("../../../db");
   // your code here !
   mydb
   .query('SELECT * FROM track')
-  .then(([title, youtube_url, album_id])=>{
-      res.json({titre:title, youtube_url:youtube_url, album_id:album_id})
+  .then(([result])=>{
+      res.json(result)
 })
 
 };

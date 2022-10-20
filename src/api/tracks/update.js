@@ -3,20 +3,20 @@ const { mydb } = require("../../../db");
 
  module.exports =(req, res) => {
   // your code here !
-  const albumId = parseInt(req.params.id);
-  const { title, youtubeUrl} = req.body;
+  const {id} = req.params;
+  const { title, youtube_url, id_album} = req.body;
 
   mydb
-  .query(`UPDATE track set title = ?, youtube_url = ?, album_id=? WHERE id = ?`, [title, youtubeUrl, albumId])
+  .query(`UPDATE track SET title = ?, youtube_url = ?, id_album=? WHERE id = ?`, [title, youtube_url, id_album, id])
   .then(([result]) => {
       if (result.affectedRows === 0) {
-      res.status(404).send("not found");
+      res.sendStatus(404);
       } else {
           res.sendStatus(204);
       }
   })
   .catch((err) =>{
       console.error(err);
-      res.status(500).send("Error editing the album in database");
+      res.status(500).send("Error");
   });
 };

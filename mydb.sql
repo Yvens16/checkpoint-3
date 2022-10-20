@@ -8,10 +8,10 @@ DROP TABLE IF EXISTS `album` ;
 
 CREATE TABLE IF NOT EXISTS `album` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(255) NOT NULL,
-  `genre` VARCHAR(255) NOT NULL,
-  `picture` VARCHAR(255) NOT NULL,
-  `artist` VARCHAR(255) NOT NULL,
+  `title` VARCHAR(255),
+  `genre` VARCHAR(255),
+  `picture` VARCHAR(255),
+  `artist` VARCHAR(255),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `track` ;
 
 CREATE TABLE IF NOT EXISTS `track` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(128) NOT NULL,
-  `youtube_url` VARCHAR(255) NOT NULL,
-  `album_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `album_id`),
-  INDEX `fk_track_album_idx` (`album_id` ASC) VISIBLE,
+  `title` VARCHAR(128),
+  `youtube_url` VARCHAR(255),
+  `id_album` INT,
+  PRIMARY KEY (`id`),
+  INDEX `fk_track_album_idx` (`id_album` ASC) VISIBLE,
   CONSTRAINT `fk_track_album`
-    FOREIGN KEY (`album_id`)
+    FOREIGN KEY (`id_album`)
     REFERENCES `mydb`.`album` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
