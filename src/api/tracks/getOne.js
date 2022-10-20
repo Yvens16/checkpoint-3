@@ -6,7 +6,7 @@ const getTrackById = (req, res) => {
     .query(`select * from track where id= ? `, [id])
     .then(([trackById]) => {
       if (!trackById[0]) {
-        return res.status(404);
+        return res.sendStatus(404);
       }
       res.status(200).json(trackById[0]);
     })

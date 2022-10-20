@@ -6,7 +6,7 @@ const getAlbumById = (req, res) => {
     .query(`select * from album where id= ? `, [id])
     .then(([albumById]) => {
       if (!albumById[0]) {
-        return res.status(404);
+        return res.sendStatus(404);
       }
       res.status(200).json(albumById[0]);
     })
