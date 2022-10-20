@@ -10,9 +10,6 @@ const postCreateTrack = (req, res) => {
     )
     .then(([result]) => {
       res.location(`/track/${result.insertId}`).sendStatus(201);
-    })
-    .catch((err) => {
-      res.status(500).json(`Error in postTrack ${err}`);
     });
 };
 

@@ -6,9 +6,6 @@ const getTrackAlbumById = (req, res) => {
     .query(`select * from track where id_album= ? `, [id_album])
     .then(([trackById]) => {
       res.json(trackById);
-    })
-    .catch((err) => {
-      res.status(500).json(`Error retrieving data from database : ${err}`);
     });
 };
 module.exports = {

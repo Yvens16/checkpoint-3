@@ -9,10 +9,13 @@ const postCreateAlbum = (req, res) => {
       [title, genre, picture, artist]
     )
     .then(([result]) => {
-      res.location(`/album/${result.insertId}`).sendStatus(201);
-    })
-    .catch((err) => {
-      res.status(500).json(`Error in postAlbum ${err}`);
+      res.status(201).json({
+        title: title,
+        genre: genre,
+        picture: picture,
+        artist: artist,
+        id: result.insertId,
+      });
     });
 };
 

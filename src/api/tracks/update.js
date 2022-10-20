@@ -15,9 +15,6 @@ const updateTrack = (req, res) => {
       } else {
         res.sendStatus(204);
       }
-    })
-    .catch((err) => {
-      res.status(500).json(`Error editing the track: ${err}`);
     });
 };
 
