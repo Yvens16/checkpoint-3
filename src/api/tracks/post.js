@@ -10,12 +10,20 @@ module.exports = (req, res) => {
       id_album,
     ])
     .then(([result]) => {
-      res.status(201).json({
-        title: title,
-        youtube_url: youtube_url,
-        id_album: id_album,
-        id: result.insertId,
-      });
+      if (result.affectedRows === 0) {
+        return false;
+      } else {
+        return result.insertId;
+      }
+    })
+    .then((insertId) => {
+      sqlDB
+        .query(`SELECT * FROM track WHERE id = ?`, [insertId])
+        .then(([track]) => res.status(201).json(track[0]))
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send('Error');
+        });
     })
     .catch((err) => {
       console.error(err);
